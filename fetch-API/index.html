@@ -5,26 +5,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fetch API Sandbox</title>
+  <style>
+    html {
+      font-size: 20px;
+      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    form * {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
 </head>
 
+
 <body>
-
-
-  <button id="getText">Get Text</button>
-
-
-
+  <main>
+    <form>
+      <label for="search">Search</label>
+      <input id="search" type="search" />
+      <button id="btnSearch">Go</button>
+    </form>
+    <div class="out"></div>
+  </main>
 
   <script>
-    document.getElementById("getText").addEventListener("click", getText)
 
-    function getText() {
-      fetch('sample.txt')
-        .then(function (response) {
+    const APIKEY = 'oFsmat8dozMGnnE5YidJO87YL8PCt8u1'
 
-          console.log(response.text());
-        })
+    document.addEventListener("DOMContentLoaded", init)
+    function init() {
+      document.getElementById('btnSearch').addEventListener('click', event);
+      event.preventDefault()//Stop the page from reload
+      const url = `https//api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`
+      let str = document.getElementById("search").value.trim()
+      url = url.concat(str)
+      console.log(url);
     }
+
   </script>
 </body>
 
